@@ -4,6 +4,9 @@
   "displayName": "vscode-reactor-launcher",
   "description": "Launch application with Project Reactor hooks for better debugging.",
   "version": "0.0.1",
+  "repository": {
+    "url": "https://github.com/gayanper/vscode-reactor-launcher"
+  },
   "license": "EPL-2.0",
   "engines": {
     "vscode": "^1.81.0"
