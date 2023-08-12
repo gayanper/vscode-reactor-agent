@@ -44,9 +44,15 @@ jobs:
         vsce package
 
     - name: Publish
+      id: publish
       if: ${{ steps.build.outcome == 'success' }}
       env:
         VSCE_PAT: ${{ secrets.VSCE_TOKEN }}
       run: |
         vsce publish ${{ github.event.inputs.release_type }}
 
+    - name: Push
+      if: ${{ steps.publish.outcome == 'success' }}
+      run: |
+        git push origin
+  
