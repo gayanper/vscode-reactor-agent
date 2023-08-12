@@ -31,10 +31,15 @@ jobs:
     - name: Install vsce
       run: npm install -g @vscode/vsce 
 
+    - name: Configure Git
+      run: |
+        git config --global user.email "workflows@egithub.com"
+        git config --global user.name "workflows@egithub.com"
+
     - name: Build
       id: build
       run: |
-        npm install
+        npm install --no-package-lock
         npm run build-agent
         vsce package
 
