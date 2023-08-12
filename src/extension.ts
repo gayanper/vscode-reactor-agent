@@ -6,7 +6,7 @@ export function activate(context: vscode.ExtensionContext) {
 	const disposable = vscode.debug.registerDebugConfigurationProvider("java", {
 		resolveDebugConfiguration(folder, debugConfiguration, token) {
 			if (debugConfiguration.enableTracebacks) {
-				const extensionPath = vscode.extensions.getExtension("org.gap.vscode-reactor-launcher")?.extensionPath;
+				const extensionPath = vscode.extensions.getExtension("org-gap.vscode-reactor-launcher")?.extensionPath;
 				if (extensionPath) {
 					const agentPath = path.join(extensionPath, "ajars/ragent.jar");
 					if (existsSync(agentPath)) {
