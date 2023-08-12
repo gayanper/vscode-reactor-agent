@@ -1,0 +1,47 @@
+name: Release Extension
+
+on:
+  workflow_dispatch:
+    inputs:
+      release_type:
+        description: The type of the release
+        required: false
+        type: choice
+        default: "patch"
+        options:
+          - "patch"
+          - "minor"
+          - "major"
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: Install vsce
+      run: npm install -g @vscode/vsce 
+
+    - name: Build
+      id: build
+      run: |
+        npm install
+        npm run build-agent
+        vsce package
+
+    - name: Publish
+      if: ${{ steps.build.outcome == 'success' }}
+      env:
+        VSCE_PAT: ${{ secrets.VSCE_TOKEN }}
+      run: |
+        vsce publish ${{ github.event.inputs.release_type }}
+

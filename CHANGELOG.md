@@ -1,7 +1,6 @@
 # Change Log
 
-All notable changes to the "org-gap-vscode-reactor-launcher" extension will be documented in this file.
+## 0.0.1
 
-## [Unreleased]
-
-- Initial release
+The initial release with
+- Reactor project `tracebacks` support.
