@@ -4,6 +4,7 @@
   "displayName": "vscode-reactor-launcher",
   "description": "Launch application with Project Reactor hooks for better debugging.",
   "version": "0.0.1",
+  "icon": "icons/project.png",
   "repository": {
     "url": "https://github.com/gayanper/vscode-reactor-launcher"
   },

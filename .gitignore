@@ -7,3 +7,4 @@ target/
 .project
 .classpath
 ajars/
+.DS_Store
