@@ -12,7 +12,7 @@ export function activate(context: vscode.ExtensionContext) {
 					if (existsSync(agentPath)) {
 						const agentParam = `-javaagent:${agentPath}`;
 						if (debugConfiguration.vmArgs) {
-							debugConfiguration.vmArgs.unshift([agentParam]);
+							updateExistingValue(debugConfiguration, agentParam);
 						} else {
 							debugConfiguration.vmArgs = [agentParam];
 						}
@@ -25,6 +25,14 @@ export function activate(context: vscode.ExtensionContext) {
 		},
 	});
 	context.subscriptions.push(disposable);
+}
+
+function updateExistingValue(debugConfiguration: vscode.DebugConfiguration, agentParam: string) {
+	if (Array.isArray(debugConfiguration.vmArgs)) {
+		debugConfiguration.vmArgs.unshift([agentParam]);
+	} else {
+		debugConfiguration.vmArgs = (debugConfiguration.vmArgs as string).concat(' ').concat(agentParam);
+	}
 }
 
 export function deactivate() { }
