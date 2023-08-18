@@ -54,5 +54,6 @@ jobs:
     - name: Push
       if: ${{ steps.publish.outcome == 'success' }}
       run: |
+        git push origin
         git push origin --tags
   
