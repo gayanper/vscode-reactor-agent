@@ -32,7 +32,7 @@
               "enableTracebacks": {
                 "type": "boolean",
                 "default": false,
-                "description": "Enable reactor Tracebacks for current application."
+                "description": "Enable reactor Tracebacks for current application. Adding the same enableTracebacks to vmArgs should also enable this feature in Test configurations."
               }
             }
           }
