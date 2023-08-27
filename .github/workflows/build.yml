@@ -51,4 +51,10 @@ jobs:
       if: ${{ steps.package.outcome == 'success' && github.event_name == 'push' }}
       env:
         CLOUDSMITH_API_KEY: ${{ secrets.PKG_API_KEY }}
-      run: ./.github/workflows/upload-to-cs.sh $(ls ./*.vsix)
+      run: ./.github/workflows/cs.upload.sh $(ls ./*.vsix)
+
+    - name: Cleaning Repo
+      env: 
+        CLOUDSMITH_API_KEY: ${{ secrets.PKG_API_KEY }}
+      if: success()
+      run: ./.github/workflows/cs.cleanup-packages.sh vscode-reactor-launcher 2
