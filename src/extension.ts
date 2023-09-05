@@ -18,6 +18,10 @@ function registerOptionCompletionProvider() {
 				if (jsonLocation.isAtPropertyKey) {
 					return [];
 				}
+				// show completions only if there is not token present
+				if (document.getWordRangeAtPosition(position)) {
+					return [];
+				}
 
 				const path = jsonLocation.path;
 				// support both java and unit test configs
