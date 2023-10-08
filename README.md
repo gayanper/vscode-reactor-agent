@@ -13,10 +13,40 @@ This extension depends on Redhat Java VSCode Extension
 
 ## Extension Settings
 
-This extension contributes the following properties to java launch configuration.
+**:Attension:** The following is deprecated and no more supported.
+> This extension contributes the following properties to java launch configuration.
+>
+> #### Properties
+>- enableTracebacks  -  Enable Project Reactor traceback feature for current application. Read [more here](https://projectreactor.io/docs/core/release/reference/#debug-activate).
 
-#### Properties
-- enableTracebacks  -  Enable Project Reactor traceback feature for current application. Read [more here](https://projectreactor.io/docs/core/release/reference/#debug-activate). When activated the following log can be observed from the java agent that is used to enable this feature.
+Instead you can now use the provided vmArg names which are also has autocompletion support to choose from. For example
+on both Java Launcher and Java Test execution configurations, you can use the following to enable **tracebacks**.
+
+```
+"vmArgs": "${command:reactorLauncher.tracebacks}"
+```
+Or
+```
+"vmArgs": [
+    "-Xms512m",
+    "${command:reactorLauncher.tracebacks}"
+]
+```
+Or
+```
+"java.test.config": [
+    {
+        "name": "Reactor",
+        "vmargs": ["${command:reactorLauncher.tracebacks}"],
+        "env": {},
+        "classPaths": [],
+        "javaExec": "/opt/sdkman/_/candidates/java/21.ea.35-open/bin/java"
+    }
+],
+```
+
+When activated the following log can be observed from the java agent that is used to enable this feature.
+
     ```
     ============== [VSCode Reactor Agent: Install Start] ==============
     19:50:41.780 [main] DEBUG reactor.util.Loggers - Using Slf4j logging framework
@@ -35,8 +65,9 @@ None
 
 ## Release Notes
 
-### 0.0.1
-- Add support for project reactor **tracebacks** with initial extension implementation.
+**Latest Release: 0.1.0**
+
+Refer to [CHANGELOG](./CHANGELOG.md)
 
 ---
 
